@@ -7,14 +7,13 @@
 .App {
   text-align: center;
 }
-.App tr img{
+
+.App tr input[type=checkbox]{
+  transform: scale(2);
+  width: 40px;
   float: left;
   padding-right: 10px;
-}
-.App thead tr img{
-  float: left;
-  padding-right: 10px;
-  padding-top: 5px;;
+  margin-top: 10px;;
 }
 
 .App-logo {
