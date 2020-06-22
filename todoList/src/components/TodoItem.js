@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import './TodoItem.css';
-import check from '../img/check.png';
-import checkDone from '../img/checkbox.png';
-
+import tickDelete from '../img/tickdelete.jpg';
 class TodoItem extends Component {   
     render() { 
         const {item, onClick} = this.props;
-        let url = check;
+        let checked = false;
         if(item.isDone){
-            url = checkDone;
+            checked = true;
         }
         return ( 
             <tr className = {classNames('TodoItem', {'TodoItem-done':item.isDone})}>
                 <th scope="row">
-                    <img src ={url} onClick= {onClick} />{item.title}
+                <input type="checkbox" onClick= {onClick} checked = {checked} /> {item.title}
                 </th>
             </tr>
             

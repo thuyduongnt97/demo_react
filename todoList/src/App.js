@@ -3,11 +3,11 @@ import TodoItem from './components/TodoItem';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import tick from './img/tick.png';
-
 class App extends Component {
   constructor(){
     super();
     this.state = {
+      newItem: '',
       TodoItems: [
         {title: 'Title A', isDone: true},
         {title: 'Title B', isDone: false},
@@ -15,6 +15,8 @@ class App extends Component {
       ]
     }
     this.onKeyUp = this.onKeyUp.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClickAll.bind(this);
   }
 
   onItemClicked(item){    
@@ -42,9 +44,8 @@ class App extends Component {
       if(!text){
         return;
       }
-      // text = text.trim();
-      // if(!text) return;
       this.setState({
+        newItem: '',
         TodoItems: [
           {title : text, isDone : false},
           ...this.state.TodoItems
@@ -53,8 +54,17 @@ class App extends Component {
     }
     
   }
+
+  onChange(event){
+    this.setState({
+      newItem : event.target.value
+    })
+  }
+  onClickAll(){
+
+  }
   render () {
-    const {TodoItems} = this.state;
+    const {TodoItems, newItem} = this.state;
 
     return (
       <div className="App">
@@ -62,8 +72,15 @@ class App extends Component {
         <thead>
           <tr>
             <th>
-              <img src = {tick}/>
-              <input className="form-control col-sm-11" type="text" placeholder=".form-control-lg" onKeyUp = {this.onKeyUp} />
+              <input type = "checkbox" />
+              <input  
+                className="form-control col-sm-11" 
+                type="text" 
+                placeholder=".form-control-lg" 
+                value = {newItem}
+                onKeyUp = {this.onKeyUp} 
+                onChange = {this.onChange}
+              />
             </th>
           </tr>
         </thead>
