@@ -1,0 +1,108 @@
+.border-bottom{ 
+  border-bottom: 2px solid #efefef;
+}
+.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+.content-covid {
+  background-color: #fff;
+}
+.count-covid-thegioi { 
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 12px 10px;
+  position: relative;
+}
+.title_cate {
+  font-size: 40px;
+  color: #222;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.center {
+  text-align: center;
+}
+.count-covid-thegioi .item {
+  font: 400 16px/1.6 var(--font1);
+  color: var(--color-vne);
+  margin: 0 12px;
+  text-align: center;
+}
+.count-covid-thegioi .item label {
+  display: block;
+  font-size: 16px;
+  color: #222;
+}
+.count-covid-thegioi .item strong {
+  font: bold 22px/1.6 Arial;
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  min-width: 150px;
+  text-align: center;
+  border-radius: 4px;
+  background: #ff4d4f;
+  color: #fff;
+  margin: 3px 0;
+}
+.count-covid-thegioi .item p {
+  margin-bottom: 0;
+  font-family: arial;
+  font-size: 14px;
+}
+
+.count-covid-thegioi .item.tuvong strong {
+  background: #222;
+}
+.count-covid-thegioi .item.khoi strong {
+  background: #8CF2CD;
+  color: #00945E;
+}
+.box-thongke {
+  border: 2px solid #E5E5E5;
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+}
+
+.box-thongke .item {
+  width: 20%;
+  font-size: 16px;
+  padding: 15px;
+  color: #BDBDBD;
+}
+.box-thongke .item strong {
+  font: bold;
+  /* display: block; */
+  margin-bottom: 10px;
+}
+
+.box-thongke-thegioi .item {
+  color: #757575;
+}
+.box-thongke .item.active {
+  border-right: 1px solid #E5E5E5;
+  color: #000;
+}
+.box-thongke .item.active span {
+  color: #000;
+}
+.box-thongke-thegioi .item span {
+  display: block;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.box-thongke-thegioi .item span i {
+  display: block;
+}
+.box-thongke-thegioi .item strong {
+  font-size: 18px;
+}

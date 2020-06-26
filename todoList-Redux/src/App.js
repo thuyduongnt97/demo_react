@@ -1,10 +1,17 @@
+  
 import React, { PureComponent } from 'react';
+import {Provider} from 'react-redux';
+import store from './store';
+
+//imponents
 import TodoList from './components/TodoList'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
 import './css/Todo.css'
- const fillterByStatus = (todos = [], status = '', id) => {
+
+const  isNotCheckAll = (todos = []) => todos.find(todo=> !todo.isCompleted)
+const fillterByStatus = (todos = [], status = '', id) => {
         switch (status) {
             case 'ACTIVE':
                 return todos.filter(todo => !todo.isCompleted)
@@ -18,28 +25,15 @@ import './css/Todo.css'
     }
 class App extends PureComponent {
     state = {
-        listTodos: [{
-            id: 1,
-            text: 'todo1',
-            isCompleted: true
-        },{
-            id: 2,
-            text: 'todo2',
-            isCompleted: false
-        },{
-            id: 3,
-            text: 'todo3',
-            isCompleted: true
-        }],
         todoEditingId: '',
         isCheckedAll : false,
         status: "ALL"
     }
     
-    isNotCheckAll = (todos = []) => todos.find(todo=> !todo.isCompleted)
+  
     
     componentWillMount(){
-        this.setState({isCheckedAll : !this.isNotCheckAll(this.state.listTodos)})
+        this.setState({isCheckedAll : !isNotCheckAll(this.state.listTodos)})
     }
     addTodos = (todo = {}) => {
         this.setState(preState => ({
@@ -65,7 +59,7 @@ class App extends PureComponent {
         const listUpdate = listTodos.map(todo => todo.id === id? ({...todo, isCompleted : !todo.isCompleted}) : todo)
         this.setState(preState => ({
             listTodos : listUpdate,
-            isCheckedAll : !this.isNotCheckAll(listUpdate)
+            isCheckedAll : !isNotCheckAll(listUpdate)
         }))
     }
     checkAllTodos = () => {
@@ -95,28 +89,34 @@ class App extends PureComponent {
         })
     }
     render() {
-        const { listTodos, todoEditingId, isCheckedAll, status} = this.state
+        const { todoEditingId, isCheckedAll, status} = this.state
         return (
-        <div className="todoapp">
-            <Header addTodo = {this.addTodos} />
-            <TodoList 
-                listTodos = {fillterByStatus(listTodos, status)}
-                getEditTodo = {this.getEditTodo}
-                todoEditingId = {todoEditingId}
-                onEditTodo = {this.onEditTodo}
-                markComplete = {this.onChangeComplete}
-                isCheckedAll = {isCheckedAll}
-                checkAllTodos = {this.checkAllTodos}
-                removeTodo = {this.removeTodo }
-            />
-            <Footer 
-                status = {status}
-                setStatusFilter = {(status) => this.setState({ status })} 
-                clearCompleted = {this.clearCompleted}
-                numOfTodos = {listTodos.length}
-                numOfTodosLeft = {fillterByStatus(listTodos, 'ACTIVE').length}
-            />
-        </div>
+            <Provider store = {store}>
+                 <div className="todoapp">
+                    <Header 
+                        // addTodo = {this.addTodos} 
+
+                    />
+                    <TodoList 
+                        // listTodos = {fillterByStatus(listTodos, status)}
+                        // getEditTodo = {this.getEditTodo}
+                        todoEditingId = {todoEditingId}
+                        // onEditTodo = {this.onEditTodo}
+                        markComplete = {this.onChangeComplete}
+                        isCheckedAll = {isCheckedAll}
+                        checkAllTodos = {this.checkAllTodos}
+                        removeTodo = {this.removeTodo }
+                    />
+                    <Footer 
+                        status = {status}
+                        setStatusFilter = {(status) => this.setState({ status })} 
+                        clearCompleted = {this.clearCompleted}
+                        // numOfTodos = {listTodos.length}
+                        // numOfTodosLeft = {fillterByStatus(listTodos, 'ACTIVE').length}
+                    />
+                </div>
+            </Provider>
+       
         );
 
     }
