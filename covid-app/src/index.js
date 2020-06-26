@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {createStore, applyMiddleware} from 'redux';
+import { Provider } from 'react-redux'
+import reducer from './reducers/index'
 import * as serviceWorker from './serviceWorker';
 
+import App from './components/App';
+
+//import css
+import './css/antd.css'
+import './css/common.css'
+import './css/header.css'
+import './css/loading.css'
+
+const store = createStore(reducer)
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
