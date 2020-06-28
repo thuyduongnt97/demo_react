@@ -6,6 +6,7 @@ class WorldTotal extends Component{
         const {table_world} = this.props
         return (
             <>
+{/* {console.log(table_world)} */}
                 <main className ="ant-layout-content content-covid">
                     <div className = "ant-row">
                         <div className="ant-col ant-col-22 ant-col-offset-1">

@@ -9,6 +9,7 @@ import './css/antd.css'
 import './css/common.css'
 import './css/header.css'
 import './css/loading.css'
+require('bootstrap/dist/css/bootstrap.css')
 
 ReactDOM.render(
   <React.StrictMode>
