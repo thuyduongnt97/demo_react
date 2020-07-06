@@ -1,18 +1,23 @@
 import React from 'react';
 // import Table from 'react-bootstrap/Table'
 import BootstrapTable from 'react-bootstrap-table-next';  
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';  
-
+import filterFactory, { textFilter,selectFilter} from 'react-bootstrap-table2-filter';  
 import paginationFactory from 'react-bootstrap-table2-paginator';  
 
 const Nation = (table_nation) => {
+    let options = table_nation.table_nation.map(item => item.country_vn)
     let columnsField = [
-        { dataField: 'country_vn',   text: 'Quốc gia', sort: true, filter: textFilter() },
-        { dataField: 'total_cases',   text: 'Nhiễm'},
-        { dataField: 'new_cases',   text: 'Mới nhiễm'},
-        { dataField: 'total_deaths',   text: 'Tử vong'},
-        { dataField: 'new_deaths',   text: 'Mới tử vong'},
-        { dataField: 'total_recovered',   text: 'Mới bệnh'}
+        {   
+            dataField: 'country_vn',   
+            text: 'Quốc gia:   ', 
+            sort: true, 
+            filter: textFilter() 
+        },
+        { dataField: 'total_cases',   text: 'Nhiễm', sort: true},
+        { dataField: 'new_cases',   text: 'Mới nhiễm', sort:true},
+        { dataField: 'total_deaths',   text: 'Tử vong', sort :true},
+        { dataField: 'new_deaths',   text: 'Mới tử vong', sort:true},
+        { dataField: 'total_recovered',   text: 'Mới bệnh', sort: true}
     ]
     return (
         <main className ="ant-layout-content content-covid">
@@ -30,6 +35,7 @@ const Nation = (table_nation) => {
                             columns={ columnsField }  
                             pagination={ paginationFactory() }
                             filter={ filterFactory()}
+
                         />  
                         </div>
                        
@@ -67,7 +73,7 @@ const htmlData = (data,key) =>{
     }
     return (
         <>
-        {console.log(data)}
+        {/* {console.log(data)} */}
             <tr>
                 <td className="ant-table-cell">{data.country_vn}</td>
                 <td className="ant-table-cell">{data.total_cases}</td>
