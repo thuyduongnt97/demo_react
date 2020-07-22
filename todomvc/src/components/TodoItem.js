@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 import classnames from 'classnames'
 import TodoTextInput from './TodoTextInput'
 
@@ -13,6 +14,40 @@ export default class TodoItem extends Component {
 
   state = {
     editing: false
+  }
+
+  componentDidMount(){
+    // fetch("http://localhost:4000/links/43")
+    //   .then(res => console.log(res))
+    //   // .then(
+      //   (result) => {
+      //     console.log(result)
+      //   },
+      //   // Note: it's important to handle errors here
+      //   // instead of a catch() block so that we don't swallow
+      //   // exceptions from actual bugs in components.
+      //   (error) => {
+      //     this.setState({
+      //       isLoaded: true,
+      //       error
+      //     });
+      //   }
+      // )
+
+      var config = {
+        method: 'get',
+        dataType: "json",
+        url: 'http://localhost:4000/links/43',
+      };
+      console.log(config)
+      axios(config)
+      .then(function (response) {
+        console.log(response.data)
+       // console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleDoubleClick = () => {
@@ -55,6 +90,7 @@ export default class TodoItem extends Component {
     }
 
     return (
+
       <li className={classnames({
         completed: todo.completed,
         editing: this.state.editing

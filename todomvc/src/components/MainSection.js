@@ -2,7 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Footer from './Footer'
 import VisibleTodoList from '../containers/VisibleTodoList'
+var bcrypt = require('bcryptjs');
+const password = '251197'
+const rounds = 12
 
+bcrypt.hash(password, rounds, (err, hash) => {
+	if (err) {
+    console.error(err)
+    return
+  }
+  console.log(hash)
+})
 const MainSection = ({ todosCount, completedCount, actions }) =>
   (
     <section className="main">
